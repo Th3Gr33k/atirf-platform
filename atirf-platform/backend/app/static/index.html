@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ATIRF Platform Demo</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <h1>ATIRF Platform</h1>
+      <p>Adaptive Threat Intelligence & Response Framework — Demo Console</p>
+    </div>
+    <div class="actions">
+      <button id="resetBtn">Reset</button>
+      <button id="loadBtn">Load Demo Data</button>
+      <button id="refreshBtn">Refresh</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="cards" id="metrics"></section>
+
+    <section class="grid two">
+      <div class="panel">
+        <h2>Incidents</h2>
+        <div id="incidents"></div>
+      </div>
+      <div class="panel">
+        <h2>Explainable Summary</h2>
+        <div id="incidentDetail" class="detail">Select an incident after loading demo data.</div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <h2>Alerts</h2>
+        <div id="alerts"></div>
+      </div>
+      <div class="panel">
+        <h2>Recent Events</h2>
+        <div id="events"></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <h2>ATT&amp;CK Coverage</h2>
+        <div id="mitre"></div>
+      </div>
+      <div class="panel">
+        <h2>Severity Breakdown</h2>
+        <div id="severity"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

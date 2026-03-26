@@ -1,0 +1,85 @@
+:root {
+  --bg: #0b1020;
+  --panel: #111831;
+  --card: #162140;
+  --text: #e8eefc;
+  --muted: #9fb0d0;
+  --border: #28365e;
+  --accent: #6ea8fe;
+  --critical: #ff6b6b;
+  --high: #ffa94d;
+  --medium: #ffd43b;
+  --low: #69db7c;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: rgba(11,16,32,.96);
+  backdrop-filter: blur(8px);
+}
+h1 { margin: 0; font-size: 28px; }
+p { color: var(--muted); margin: 6px 0 0; }
+main { padding: 24px; }
+.cards, .grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.cards { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.grid.two { grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); }
+.panel, .metric {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.18);
+}
+.metric .value { font-size: 30px; font-weight: 700; margin-top: 8px; }
+.metric .label { color: var(--muted); }
+button {
+  background: var(--accent);
+  color: #041127;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.actions { display: flex; gap: 10px; }
+.list-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.list-item h3 { margin: 0 0 6px; font-size: 16px; }
+.meta { color: var(--muted); font-size: 13px; }
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-right: 8px;
+}
+.low { background: rgba(105,219,124,.16); color: var(--low); }
+.medium { background: rgba(255,212,59,.16); color: var(--medium); }
+.high { background: rgba(255,169,77,.16); color: var(--high); }
+.critical { background: rgba(255,107,107,.16); color: var(--critical); }
+.detail { line-height: 1.65; color: var(--text); }
+.kv { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.small { font-size: 13px; color: var(--muted); }
+a.inline { color: var(--accent); text-decoration: none; }

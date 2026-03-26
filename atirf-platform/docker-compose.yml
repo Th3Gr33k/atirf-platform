@@ -1,0 +1,8 @@
+services:
+  atirf:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: atirf-platform
+    ports:
+      - "8000:8000"

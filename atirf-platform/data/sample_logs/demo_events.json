@@ -1,0 +1,52 @@
+[
+  {
+    "timestamp": "2026-03-26T13:00:01Z",
+    "event_source": "XDR",
+    "hostname": "TEST-PC-01",
+    "user": "test.user",
+    "ip_address": "0.0.0.0",
+    "event_type": "process_start",
+    "severity": "medium",
+    "process_name": "powershell.exe",
+    "parent_process": "WINWORD.EXE",
+    "command_line": "powershell.exe -enc SQBFAFgAIAAoTmV3LU9iamVjdA==",
+    "raw_log": "Word spawned PowerShell with encoded command"
+  },
+  {
+    "timestamp": "2026-03-26T13:00:45Z",
+    "event_source": "dnsfilter",
+    "hostname": "TEST-PC-01",
+    "user": "test.user",
+    "ip_address": "0.0.0.0",
+    "event_type": "dns_query",
+    "severity": "high",
+    "process_name": "powershell.exe",
+    "parent_process": "WINWORD.EXE",
+    "domain": "cdn-updates-secure.com",
+    "url": "http://cdn-updates-secure.com/bootstrap",
+    "raw_log": "Endpoint queried known malicious domain"
+  },
+  {
+    "timestamp": "2026-03-26T13:01:12Z",
+    "event_source": "firewall",
+    "hostname": "TEST-PC-01",
+    "user": "test.user",
+    "ip_address": "0.0.0.0",
+    "event_type": "web_request",
+    "severity": "medium",
+    "process_name": "powershell.exe",
+    "domain": "cdn-updates-secure.com",
+    "url": "http://cdn-updates-secure.com/second-stage",
+    "raw_log": "Firewall observed outbound request to malicious domain"
+  },
+  {
+    "timestamp": "2026-03-26T13:05:00Z",
+    "event_source": "m365",
+    "hostname": "TEST-PC-01",
+    "user": "test.user",
+    "ip_address": "0.0.0.0",
+    "event_type": "mailbox_rule_created",
+    "severity": "medium",
+    "raw_log": "External forwarding rule created"
+  }
+]
