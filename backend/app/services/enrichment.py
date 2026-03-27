@@ -7,10 +7,10 @@ ASSET_CRITICALITY = {
 }
 
 MALICIOUS_DOMAINS = {
-    "cdn-updates-secure.com": "malicious",
-    "login-verify-session.net": "suspicious",
-    "secure-sharepoint-login.com": "suspicious",
-    "onedrive-auth-share.net": "malicious",
+    "bootstrap-updates.example": "malicious",
+    "login-verify.example": "suspicious",
+    "secure-portal.example": "suspicious",
+    "fileshare-auth.example": "malicious",
 }
 
 MITRE_MAP = {

@@ -4,7 +4,7 @@
     "event_source": "xdr",
     "hostname": "FIN-LAPTOP-07",
     "user": "finance.user",
-    "ip_address": "10.42.18.22",
+    "ip_address": "198.51.100.22",
     "event_type": "process_start",
     "severity": "medium",
     "process_name": "powershell.exe",
@@ -17,12 +17,12 @@
     "event_source": "proxy",
     "hostname": "FIN-LAPTOP-07",
     "user": "finance.user",
-    "ip_address": "10.42.18.22",
+    "ip_address": "198.51.100.22",
     "event_type": "web_request",
     "severity": "high",
     "process_name": "powershell.exe",
-    "domain": "onedrive-auth-share.net",
-    "url": "http://onedrive-auth-share.net/bootstrap",
+    "domain": "fileshare-auth.example",
+    "url": "http://fileshare-auth.example/bootstrap",
     "raw_log": "Suspicious download over HTTP"
   },
   {
@@ -30,10 +30,10 @@
     "event_source": "dnsfilter",
     "hostname": "FIN-LAPTOP-07",
     "user": "finance.user",
-    "ip_address": "10.42.18.22",
+    "ip_address": "198.51.100.22",
     "event_type": "dns_query",
     "severity": "medium",
-    "domain": "onedrive-auth-share.net",
+    "domain": "fileshare-auth.example",
     "raw_log": "Known malicious infrastructure resolution"
   },
   {
@@ -41,7 +41,7 @@
     "event_source": "m365",
     "hostname": "FIN-LAPTOP-07",
     "user": "finance.user",
-    "ip_address": "10.42.18.22",
+    "ip_address": "198.51.100.22",
     "event_type": "mailbox_rule_created",
     "severity": "medium",
     "raw_log": "Mailbox forwarding rule created after suspicious sign-in"
@@ -51,7 +51,7 @@
     "event_source": "m365",
     "hostname": "EXEC-LAPTOP-03",
     "user": "ceo.assistant",
-    "ip_address": "10.42.3.11",
+    "ip_address": "203.0.113.11",
     "event_type": "mailbox_rule_created",
     "severity": "medium",
     "raw_log": "Inbox rule created for hidden forwarding"
@@ -61,10 +61,10 @@
     "event_source": "dnsfilter",
     "hostname": "EXEC-LAPTOP-03",
     "user": "ceo.assistant",
-    "ip_address": "10.42.3.11",
+    "ip_address": "203.0.113.11",
     "event_type": "dns_query",
     "severity": "medium",
-    "domain": "secure-sharepoint-login.com",
+    "domain": "secure-portal.example",
     "raw_log": "Resolved lookalike domain associated with credential harvesting"
   },
   {
@@ -72,7 +72,7 @@
     "event_source": "windows_event",
     "hostname": "LAB-DC-01",
     "user": "Administrator",
-    "ip_address": "10.42.0.10",
+    "ip_address": "192.0.2.10",
     "event_type": "authentication_success",
     "severity": "high",
     "raw_log": "Successful privileged logon to domain controller from unusual subnet"
@@ -82,7 +82,7 @@
     "event_source": "xdr",
     "hostname": "LAB-DC-01",
     "user": "Administrator",
-    "ip_address": "10.42.0.10",
+    "ip_address": "192.0.2.10",
     "event_type": "privileged_command",
     "severity": "high",
     "process_name": "cmd.exe",
@@ -95,11 +95,11 @@
     "event_source": "firewall",
     "hostname": "LAB-DC-01",
     "user": "Administrator",
-    "ip_address": "10.42.0.10",
+    "ip_address": "192.0.2.10",
     "event_type": "web_request",
     "severity": "medium",
-    "domain": "cdn-updates-secure.com",
-    "url": "http://cdn-updates-secure.com/ping",
+    "domain": "bootstrap-updates.example",
+    "url": "http://bootstrap-updates.example/ping",
     "raw_log": "Critical asset communicated with malicious domain"
   },
   {
@@ -107,7 +107,7 @@
     "event_source": "xdr",
     "hostname": "HR-LAPTOP-02",
     "user": "hr.manager",
-    "ip_address": "10.42.7.16",
+    "ip_address": "203.0.113.16",
     "event_type": "process_start",
     "severity": "medium",
     "process_name": "wscript.exe",
@@ -120,12 +120,12 @@
     "event_source": "proxy",
     "hostname": "HR-LAPTOP-02",
     "user": "hr.manager",
-    "ip_address": "10.42.7.16",
+    "ip_address": "203.0.113.16",
     "event_type": "web_request",
     "severity": "high",
     "process_name": "wscript.exe",
-    "domain": "login-verify-session.net",
-    "url": "http://login-verify-session.net/a.dat",
+    "domain": "login-verify.example",
+    "url": "http://login-verify.example/a.dat",
     "raw_log": "Script host requested suspicious payload"
   }
 ]
