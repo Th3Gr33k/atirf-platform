@@ -1,4 +1,4 @@
-# ATIRF — Adaptive Threat Intelligence & Response Framework
+# ATIRF (Adaptive Threat Intelligence & Response Framework)
 ![Status](https://img.shields.io/badge/status-experimental-orange)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
