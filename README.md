@@ -175,7 +175,7 @@ If the community helps shape the core, the result can become a serious open cybe
 
 ## 🏗️ Architecture
 
-![Architecture](docs/architecture.png)
+![Architecture](docs/architecture.svg)
 
 ---
 
