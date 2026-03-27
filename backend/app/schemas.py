@@ -1,5 +1,5 @@
 from typing import List, Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EventIn(BaseModel):
@@ -27,8 +27,7 @@ class EventOut(EventIn):
     id: int
     normalized: bool
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class AlertOut(BaseModel):
@@ -43,8 +42,7 @@ class AlertOut(BaseModel):
     rationale: Optional[str] = None
     recommended_actions: Optional[str] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class IncidentOut(BaseModel):
@@ -57,5 +55,33 @@ class IncidentOut(BaseModel):
     hostname: Optional[str] = None
     user: Optional[str] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
+
+
+class AttackTechniqueOut(BaseModel):
+    id: int
+    technique_id: str
+    name: str
+    tactic: str
+    platform: Optional[str] = None
+    data_sources: Optional[str] = None
+    detection_notes: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class ConnectorIn(BaseModel):
+    name: str
+    source_type: str
+    base_url: str
+    auth_type: str = "none"
+    credential_hint: Optional[str] = None
+    trust_level: str = "community"
+    enabled: bool = True
+    notes: Optional[str] = None
+
+
+class ConnectorOut(ConnectorIn):
+    id: int
+
+    model_config = ConfigDict(from_attributes=True)

@@ -77,3 +77,31 @@ class IncidentEvent(Base):
 
     incident = relationship("Incident", back_populates="incident_events")
     alert = relationship("Alert", back_populates="incidents")
+
+
+class AttackTechnique(Base):
+    __tablename__ = "attack_techniques"
+
+    id = Column(Integer, primary_key=True, index=True)
+    technique_id = Column(String, unique=True, nullable=False, index=True)
+    name = Column(String, nullable=False)
+    tactic = Column(String, nullable=False)
+    platform = Column(String, nullable=True)
+    data_sources = Column(Text, nullable=True)
+    detection_notes = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=utcnow)
+
+
+class Connector(Base):
+    __tablename__ = "connectors"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    source_type = Column(String, nullable=False, index=True)
+    base_url = Column(String, nullable=False)
+    auth_type = Column(String, nullable=False, default="none")
+    credential_hint = Column(String, nullable=True)
+    trust_level = Column(String, nullable=False, default="community")
+    enabled = Column(Boolean, default=True)
+    notes = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=utcnow)

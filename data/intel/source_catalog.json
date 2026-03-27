@@ -1,0 +1,56 @@
+[
+  {
+    "name": "MITRE ATT&CK",
+    "source_type": "attack",
+    "kind": "knowledge-base",
+    "base_url": "https://attack.mitre.org/",
+    "ingestion_mode": "stix-taxii",
+    "trust_level": "authoritative",
+    "notes": "Use as the canonical ATT&CK technique, tactic, and data-source backbone."
+  },
+  {
+    "name": "CISA KEV",
+    "source_type": "kev",
+    "kind": "vulnerability",
+    "base_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+    "ingestion_mode": "json-or-csv",
+    "trust_level": "authoritative",
+    "notes": "Use for prioritizing CVEs known to be actively exploited."
+  },
+  {
+    "name": "OpenCTI",
+    "source_type": "opencti",
+    "kind": "cti-hub",
+    "base_url": "https://docs.opencti.io/",
+    "ingestion_mode": "api-connector",
+    "trust_level": "authoritative",
+    "notes": "Use as a central CTI platform and connector framework."
+  },
+  {
+    "name": "MISP",
+    "source_type": "misp",
+    "kind": "cti-sharing",
+    "base_url": "https://www.misp-project.org/",
+    "ingestion_mode": "api-feed",
+    "trust_level": "community",
+    "notes": "Use for indicator exchange, galaxies, taxonomies, and event sharing."
+  },
+  {
+    "name": "ransomware.live",
+    "source_type": "ransomware",
+    "kind": "public-tracking",
+    "base_url": "https://api.ransomware.live/v2",
+    "ingestion_mode": "rest-api",
+    "trust_level": "community",
+    "notes": "Use for public leak-site monitoring, ransomware groups, and victim trend enrichment."
+  },
+  {
+    "name": "World Monitor",
+    "source_type": "osint",
+    "kind": "situational-awareness",
+    "base_url": "https://worldmonitor.app/",
+    "ingestion_mode": "user-reviewed",
+    "trust_level": "unverified",
+    "notes": "Optional geopolitical and OSINT awareness source. Keep disabled by default and review output before operational use."
+  }
+]

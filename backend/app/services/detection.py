@@ -40,6 +40,16 @@ RECOMMENDATIONS = {
         "Search for other hosts resolving the same domain.",
         "Review egress activity for exfiltration or staging.",
     ],
+    "mailbox_rule_created": [
+        "Review newly created mailbox rules and forwarding destinations.",
+        "Validate the originating sign-in and MFA context.",
+        "Search for additional inbox tampering or suspicious OAuth activity.",
+    ],
+    "critical_admin_activity": [
+        "Validate whether the privileged activity was scheduled and approved.",
+        "Review recent authentication history for the involved admin account.",
+        "Collect related endpoint, identity, and change-management evidence.",
+    ],
 }
 
 
@@ -68,6 +78,8 @@ def detect_alert(enriched_event: Dict) -> Dict | None:
     reputation = enriched_event.get("ioc_reputation", "unknown")
     criticality = enriched_event.get("asset_criticality", "medium")
     severity = enriched_event.get("severity", "low")
+    event_type = (enriched_event.get("event_type") or "").lower()
+    user_privilege = enriched_event.get("user_privilege", "standard")
 
     if "powershell" in process_name and ("-enc" in command_line or "frombase64string" in command_line):
         indicators.append("powershell_encoded")
@@ -86,6 +98,18 @@ def detect_alert(enriched_event: Dict) -> Dict | None:
         rationale.append(f"The endpoint communicated with a domain classified as {reputation}.")
         mitre.append(MITRE_MAP["malicious_domain"])
         title = title or "Suspicious External Domain Communication"
+
+    if event_type == "mailbox_rule_created":
+        indicators.append("mailbox_rule_created")
+        rationale.append("A mailbox forwarding or rule creation event can indicate email collection or persistence after account compromise.")
+        mitre.append(MITRE_MAP["mailbox_rule_created"])
+        title = title or "Suspicious Mailbox Rule Creation"
+
+    if criticality == "critical" and user_privilege == "admin" and event_type in {"authentication_success", "privileged_command", "service_install"}:
+        indicators.append("critical_admin_activity")
+        rationale.append("Privileged activity occurred on a critical asset and should be validated against approved administration activity.")
+        mitre.append(MITRE_MAP["critical_admin_activity"])
+        title = title or "Privileged Activity On Critical Asset"
 
     if not indicators:
         return None

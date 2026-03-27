@@ -1,20 +1,24 @@
 from typing import Dict
 
 ASSET_CRITICALITY = {
-    "CBC-EDITOR-01": "high",
-    "CBC-DC-01": "critical",
-    "CBC-LAPTOP-01": "medium",
+    "LAB-EDITOR-01": "high",
+    "LAB-DC-01": "critical",
+    "LAB-LAPTOP-01": "medium",
 }
 
 MALICIOUS_DOMAINS = {
     "cdn-updates-secure.com": "malicious",
     "login-verify-session.net": "suspicious",
+    "secure-sharepoint-login.com": "suspicious",
+    "onedrive-auth-share.net": "malicious",
 }
 
 MITRE_MAP = {
     "powershell_encoded": "T1059.001",
     "office_spawns_script": "T1204",
     "malicious_domain": "T1071.001",
+    "mailbox_rule_created": "T1114.003",
+    "critical_admin_activity": "T1078",
 }
 
 

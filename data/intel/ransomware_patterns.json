@@ -1,0 +1,26 @@
+[
+  {
+    "family": "Akira",
+    "pattern_type": "ransomware-playbook",
+    "likely_techniques": ["T1078", "T1021", "T1490", "T1486"],
+    "operator_notes": "Common enterprise extortion sequence: valid account abuse, lateral movement, recovery inhibition, and encryption."
+  },
+  {
+    "family": "Black Basta",
+    "pattern_type": "ransomware-playbook",
+    "likely_techniques": ["T1566", "T1204", "T1003", "T1021", "T1490", "T1486"],
+    "operator_notes": "Frequently modeled with phishing-led execution, credential access, lateral movement, and encryption-impact stages."
+  },
+  {
+    "family": "LockBit",
+    "pattern_type": "ransomware-playbook",
+    "likely_techniques": ["T1078", "T1021", "T1489", "T1490", "T1486"],
+    "operator_notes": "High-speed affiliate operations often emphasize valid accounts, remote services, service stopping, and encryption."
+  },
+  {
+    "family": "CL0P",
+    "pattern_type": "ransomware-playbook",
+    "likely_techniques": ["T1078", "T1114.003", "T1486"],
+    "operator_notes": "Useful as a playbook seed for extortion cases involving compromised file-transfer or SaaS environments."
+  }
+]

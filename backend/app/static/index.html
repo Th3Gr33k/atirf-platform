@@ -8,19 +8,68 @@
 </head>
 <body>
   <header>
-    <div>
-      <h1>ATIRF Platform</h1>
-      <p>Adaptive Threat Intelligence & Response Framework — Demo Console</p>
+    <div class="brand">
+      <div class="eyebrow">ATIRF v0.1.0 Public Preview</div>
+      <h1>Adaptive Threat Intelligence &amp; Response Framework</h1>
+      <p>Open cyber defense platform for ATT&amp;CK mapping, CTI enrichment, ransomware tracking, and grounded local AI.</p>
     </div>
     <div class="actions">
       <button id="resetBtn">Reset</button>
       <button id="loadBtn">Load Demo Data</button>
+      <button id="loadShowcaseBtn">Load Showcase Data</button>
       <button id="refreshBtn">Refresh</button>
     </div>
   </header>
 
   <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="hero-chip">Built in the open for defenders, researchers, and the cyber community</div>
+        <h2>From raw telemetry to evidence-backed incident reasoning</h2>
+        <p class="hero-text">ATIRF combines detections, ATT&amp;CK techniques, CTI sources, ransomware feed enrichment, and a local Ollama copilot into one analyst-centric workflow.</p>
+        <div class="hero-actions">
+          <button id="heroSeedBtn">Seed ATT&amp;CK + CTI</button>
+          <button id="heroShowcaseBtn">Load Showcase Data</button>
+          <button id="heroCopilotBtn">Run Local AI Copilot</button>
+        </div>
+      </div>
+      <div class="hero-side">
+        <div class="hero-card">
+          <div class="hero-label">This Release Includes</div>
+          <ul class="hero-list">
+            <li>ATT&amp;CK catalog seeding</li>
+            <li>Ransomware playbook matching</li>
+            <li>Optional live `ransomware.live` feed</li>
+            <li>Optional Ollama local copilot</li>
+            <li>User-defined CTI connectors</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" id="statusPanel">
+      <h2>Status</h2>
+      <div id="statusMessage" class="detail">Loading platform data...</div>
+    </section>
+
     <section class="cards" id="metrics"></section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>MITRE ATT&amp;CK Catalog</h2>
+          <button id="seedAttackBtn">Seed ATT&amp;CK + CTI</button>
+        </div>
+        <div id="attackTechniques"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Ransomware Patterns</h2>
+          <button id="refreshRansomwareBtn">Refresh Live Feed</button>
+        </div>
+        <div id="ransomwarePatterns"></div>
+      </div>
+    </section>
 
     <section class="grid two">
       <div class="panel">
@@ -54,6 +103,56 @@
         <div id="severity"></div>
       </div>
     </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <h2>CTI Source Catalog</h2>
+        <div id="sourceCatalog"></div>
+      </div>
+      <div class="panel">
+        <h2>User Connectors</h2>
+        <form id="connectorForm" class="connector-form">
+          <input id="connectorName" type="text" placeholder="Connector name" required />
+          <input id="connectorType" type="text" placeholder="Source type: misp, taxii, opencti" required />
+          <input id="connectorUrl" type="url" placeholder="Base URL" required />
+          <input id="connectorAuth" type="text" placeholder="Auth type: api_key, bearer, none" />
+          <input id="connectorHint" type="text" placeholder="Credential hint (never store secrets here)" />
+          <textarea id="connectorNotes" placeholder="Notes, collection names, feed details"></textarea>
+          <button type="submit">Add Connector</button>
+        </form>
+        <div id="connectors"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Attack Pattern Hypotheses</h2>
+      <div id="hypotheses"></div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <h2>Live Ransomware Feed</h2>
+        <div id="ransomwareLiveStatus" class="detail">Live ransomware feed not loaded yet.</div>
+        <div id="ransomwareLiveGroups"></div>
+      </div>
+      <div class="panel">
+        <h2>Recent Claimed Victims</h2>
+        <div id="ransomwareLiveVictims"></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <h2>Local AI Copilot</h2>
+        <button id="copilotBtn">Generate Incident Analysis</button>
+      </div>
+      <div id="copilotOutput" class="detail">Select or load an incident, then generate a grounded local-AI analysis.</div>
+    </section>
+
+    <footer class="site-footer">
+      <div>ATIRF Public Preview</div>
+      <div>Open cyber defense platform for community-driven detection, CTI, and incident reasoning.</div>
+    </footer>
   </main>
 
   <script src="/static/app.js"></script>

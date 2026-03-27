@@ -1,0 +1,98 @@
+[
+  {
+    "technique_id": "T1566",
+    "name": "Phishing",
+    "tactic": "initial-access",
+    "platform": "Email, Identity",
+    "data_sources": "Email gateway logs, mailbox audit logs, URL click telemetry",
+    "detection_notes": "Correlate suspicious messages, lookalike domains, attachment execution, and post-click identity events."
+  },
+  {
+    "technique_id": "T1204",
+    "name": "User Execution",
+    "tactic": "execution",
+    "platform": "Windows, macOS, Linux",
+    "data_sources": "Process creation, command-line telemetry, email attachment handling",
+    "detection_notes": "Track user-driven launches of scripts, installers, HTA, Office child processes, and suspicious container files."
+  },
+  {
+    "technique_id": "T1059.001",
+    "name": "PowerShell",
+    "tactic": "execution",
+    "platform": "Windows",
+    "data_sources": "Process creation, PowerShell operational logs, script block logging",
+    "detection_notes": "Monitor encoded or obfuscated command lines, suspicious parent-child chains, and download cradle behavior."
+  },
+  {
+    "technique_id": "T1071.001",
+    "name": "Web Protocols",
+    "tactic": "command-and-control",
+    "platform": "Windows, Linux, macOS, Network",
+    "data_sources": "Proxy logs, firewall logs, DNS telemetry, URL reputation",
+    "detection_notes": "Prioritize newly observed domains, rare destinations, and endpoint-to-network process lineage."
+  },
+  {
+    "technique_id": "T1078",
+    "name": "Valid Accounts",
+    "tactic": "defense-evasion",
+    "platform": "Identity, Windows, SaaS",
+    "data_sources": "Authentication logs, MFA events, VPN logs, privileged activity records",
+    "detection_notes": "Score unusual logons, privileged use on critical assets, impossible travel, and identity-provider anomalies."
+  },
+  {
+    "technique_id": "T1114.003",
+    "name": "Email Collection: Email Forwarding Rule",
+    "tactic": "collection",
+    "platform": "Office 365, Google Workspace",
+    "data_sources": "Mailbox audit logs, admin audit logs, message trace",
+    "detection_notes": "Alert on newly created forwarding rules, hidden inbox rules, and post-compromise mail manipulation."
+  },
+  {
+    "technique_id": "T1003",
+    "name": "OS Credential Dumping",
+    "tactic": "credential-access",
+    "platform": "Windows, Linux",
+    "data_sources": "Process creation, memory access telemetry, security logs",
+    "detection_notes": "Detect LSASS access, suspicious dump tooling, and post-authentication credential harvesting patterns."
+  },
+  {
+    "technique_id": "T1021",
+    "name": "Remote Services",
+    "tactic": "lateral-movement",
+    "platform": "Windows, Linux, Network",
+    "data_sources": "Network connection logs, remote admin logs, authentication records",
+    "detection_notes": "Correlate privileged remote access, service creation, SMB/RDP bursts, and unusual east-west movement."
+  },
+  {
+    "technique_id": "T1053",
+    "name": "Scheduled Task/Job",
+    "tactic": "persistence",
+    "platform": "Windows, Linux",
+    "data_sources": "Task scheduler logs, cron logs, process creation telemetry",
+    "detection_notes": "Detect newly created tasks tied to suspicious binaries, scripts, or encoded command lines."
+  },
+  {
+    "technique_id": "T1489",
+    "name": "Service Stop",
+    "tactic": "impact",
+    "platform": "Windows, Linux",
+    "data_sources": "Service control events, process creation, admin command telemetry",
+    "detection_notes": "Ransomware operators often stop security, database, and backup services before encryption."
+  },
+  {
+    "technique_id": "T1490",
+    "name": "Inhibit System Recovery",
+    "tactic": "impact",
+    "platform": "Windows, Linux, ESXi",
+    "data_sources": "Backup logs, system utility execution, hypervisor activity",
+    "detection_notes": "Monitor shadow copy deletion, backup tampering, and recovery-control changes."
+  },
+  {
+    "technique_id": "T1486",
+    "name": "Data Encrypted for Impact",
+    "tactic": "impact",
+    "platform": "Windows, Linux, ESXi, NAS",
+    "data_sources": "File activity telemetry, process behavior, ransom note creation",
+    "detection_notes": "Combine high-volume file modification, extension changes, and pre-encryption preparation signals."
+  }
+]
