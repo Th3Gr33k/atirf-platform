@@ -12,7 +12,7 @@
 Created and maintained by **Mr. Gr33k H4sh3r / Th3Gr33k - AKA Deiker**.  
 A Cybersecurity lead that love cyber and AI :)
 
-![ATIRF Architecture Overview](docs/architecture-social.png)
+![ATIRF Architecture Overview](docs/architecture-social.svg)
 
 ---
 
