@@ -10,6 +10,7 @@
 7. Click `Seed ATT&CK + CTI` to populate the ATT&CK catalog and ransomware hypothesis panels
 8. Optionally enable Ollama and use `Generate Incident Analysis` for grounded local-AI output
 9. Optionally enable `ransomware.live` to populate the live ransomware tracking panels
+10. KEV and cyber news panels are enabled by default and will populate when network access is available
 
 ## Local Validation
 
@@ -26,6 +27,17 @@ The current automated checks validate:
 - ATT&CK seeding, CTI connector creation, and attack-pattern hypothesis generation
 - grounded copilot endpoint behavior when Ollama is disabled
 - live ransomware feed endpoint behavior when the source is disabled
+- workflow persistence, connector sync, and local event import helpers
+
+## Practical Local Workflow
+1. Start the platform locally
+2. Seed ATT&CK + CTI
+3. Load showcase data or import a local JSON file
+4. Review incidents and hypotheses
+5. Use the playbook and decision helper
+6. Save workflow state
+7. Add connectors and run connector sync
+8. Review connector job history to confirm execution results
 
 ## Docker Deployment
 Run:

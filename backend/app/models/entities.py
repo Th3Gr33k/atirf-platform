@@ -61,11 +61,19 @@ class Incident(Base):
     risk_score = Column(Float, nullable=False, default=0)
     summary = Column(Text, nullable=True)
     status = Column(String, nullable=False, default="open")
+    nist_phase = Column(String, nullable=False, default="Detection and Analysis")
+    owner = Column(String, nullable=True)
+    disposition = Column(String, nullable=True)
+    last_decision = Column(String, nullable=True)
+    response_summary = Column(Text, nullable=True)
     hostname = Column(String, nullable=True)
     user = Column(String, nullable=True)
     created_at = Column(DateTime, default=utcnow)
 
     incident_events = relationship("IncidentEvent", back_populates="incident", cascade="all, delete-orphan")
+    notes = relationship("IncidentNote", back_populates="incident", cascade="all, delete-orphan")
+    tasks = relationship("IncidentTask", back_populates="incident", cascade="all, delete-orphan")
+    evidence = relationship("IncidentEvidence", back_populates="incident", cascade="all, delete-orphan")
 
 
 class IncidentEvent(Base):
@@ -104,4 +112,72 @@ class Connector(Base):
     trust_level = Column(String, nullable=False, default="community")
     enabled = Column(Boolean, default=True)
     notes = Column(Text, nullable=True)
+    last_sync_status = Column(String, nullable=True)
+    last_sync_message = Column(Text, nullable=True)
+    last_sync_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=utcnow)
+    jobs = relationship("ConnectorJob", back_populates="connector", cascade="all, delete-orphan")
+
+
+class IncidentNote(Base):
+    __tablename__ = "incident_notes"
+
+    id = Column(Integer, primary_key=True, index=True)
+    incident_id = Column(Integer, ForeignKey("incidents.id"), nullable=False)
+    author = Column(String, nullable=True)
+    body = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=utcnow)
+
+    incident = relationship("Incident", back_populates="notes")
+
+
+class IncidentTask(Base):
+    __tablename__ = "incident_tasks"
+
+    id = Column(Integer, primary_key=True, index=True)
+    incident_id = Column(Integer, ForeignKey("incidents.id"), nullable=False)
+    title = Column(String, nullable=False)
+    owner = Column(String, nullable=True)
+    status = Column(String, nullable=False, default="open")
+    created_at = Column(DateTime, default=utcnow)
+
+    incident = relationship("Incident", back_populates="tasks")
+
+
+class IncidentEvidence(Base):
+    __tablename__ = "incident_evidence"
+
+    id = Column(Integer, primary_key=True, index=True)
+    incident_id = Column(Integer, ForeignKey("incidents.id"), nullable=False)
+    evidence_type = Column(String, nullable=False)
+    source = Column(String, nullable=True)
+    description = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=utcnow)
+
+    incident = relationship("Incident", back_populates="evidence")
+
+
+class ConnectorJob(Base):
+    __tablename__ = "connector_jobs"
+
+    id = Column(Integer, primary_key=True, index=True)
+    connector_id = Column(Integer, ForeignKey("connectors.id"), nullable=False)
+    job_type = Column(String, nullable=False, default="sync")
+    status = Column(String, nullable=False, default="queued")
+    message = Column(Text, nullable=True)
+    started_at = Column(DateTime, nullable=True)
+    finished_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=utcnow)
+
+    connector = relationship("Connector", back_populates="jobs")
+
+
+class NewsSource(Base):
+    __tablename__ = "news_sources"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, nullable=False)
+    url = Column(String, nullable=False)
+    trust_level = Column(String, nullable=False, default="community")
+    enabled = Column(Boolean, default=True)
     created_at = Column(DateTime, default=utcnow)

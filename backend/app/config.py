@@ -34,6 +34,11 @@ class Settings:
     ransomware_live_enabled: bool
     ransomware_live_base_url: str
     ransomware_live_timeout_seconds: int
+    kev_enabled: bool
+    kev_url: str
+    kev_timeout_seconds: int
+    cyber_news_enabled: bool
+    cyber_news_timeout_seconds: int
 
 
 settings = Settings(
@@ -50,7 +55,15 @@ settings = Settings(
     ollama_host=os.getenv("ATIRF_OLLAMA_HOST", "http://127.0.0.1:11434"),
     ollama_model=os.getenv("ATIRF_OLLAMA_MODEL", "llama3.1:8b"),
     ollama_timeout_seconds=max(5, int(os.getenv("ATIRF_OLLAMA_TIMEOUT_SECONDS", "90"))),
-    ransomware_live_enabled=_get_bool("ATIRF_RANSOMWARE_LIVE_ENABLED", False),
+    ransomware_live_enabled=_get_bool("ATIRF_RANSOMWARE_LIVE_ENABLED", True),
     ransomware_live_base_url=os.getenv("ATIRF_RANSOMWARE_LIVE_BASE_URL", "https://api.ransomware.live/v2"),
     ransomware_live_timeout_seconds=max(5, int(os.getenv("ATIRF_RANSOMWARE_LIVE_TIMEOUT_SECONDS", "30"))),
+    kev_enabled=_get_bool("ATIRF_KEV_ENABLED", True),
+    kev_url=os.getenv(
+        "ATIRF_KEV_URL",
+        "https://raw.githubusercontent.com/cisagov/kev-data/develop/known_exploited_vulnerabilities.json",
+    ),
+    kev_timeout_seconds=max(5, int(os.getenv("ATIRF_KEV_TIMEOUT_SECONDS", "30"))),
+    cyber_news_enabled=_get_bool("ATIRF_CYBER_NEWS_ENABLED", True),
+    cyber_news_timeout_seconds=max(5, int(os.getenv("ATIRF_CYBER_NEWS_TIMEOUT_SECONDS", "30"))),
 )

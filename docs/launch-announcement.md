@@ -1,9 +1,14 @@
 # ATIRF Public Launch Announcement
 
 ## Short Version
-Today I am publicly releasing **ATIRF - Adaptive Threat Intelligence & Response Framework**.
+Today I am publicly releasing **ATIRF — Adaptive Threat Intelligence & Response Framework**.
+
+Created and maintained by **Mr. Gr33k H4sh3r / Th3Gr33k - AKA Deiker**.  
+A Cybersecurity lead that love cyber and AI :)
 
 ATIRF is an open cyber defense platform built to help defenders turn raw telemetry into evidence-backed incident reasoning.
+
+![ATIRF Architecture Overview](architecture-social.png)
 
 The goal is to combine:
 
@@ -26,6 +31,15 @@ It is being built as:
 - a CTI-aware workflow for defenders
 - a community-extensible system for ATT&CK mapping, ransomware tracking, and attack-pattern analysis
 - a local-first AI-assisted experience using open models through Ollama where possible
+
+ATIRF is also not being presented as the only platform in cyber defense that covers CTI, ATT&CK, or response.
+The distinction is the combination:
+
+- ATT&CK-linked incident reasoning
+- ransomware and KEV awareness
+- decision-support workflows
+- open community contribution
+- local grounded AI
 
 ## What The Current Release Includes
 - event ingestion and normalization

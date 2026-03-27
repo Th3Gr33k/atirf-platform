@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1120" viewBox="0 0 1800 1120" role="img" aria-labelledby="title desc">
+  <title id="title">ATIRF Architecture</title>
+  <desc id="desc">Architecture diagram for the ATIRF cyber defense platform, showing data sources, ingestion, intelligence, analysis, response workflows, and analyst outputs.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#07111f"/>
+      <stop offset="100%" stop-color="#0e2236"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#11263b"/>
+      <stop offset="100%" stop-color="#16314a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#2ad4ff"/>
+      <stop offset="100%" stop-color="#34f5c5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#02101c" flood-opacity="0.45"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#4fd9ff"/>
+    </marker>
+    <style>
+      .title { font: 800 42px 'DejaVu Sans', Arial, sans-serif; fill: #f2fbff; letter-spacing: 0.5px; }
+      .subtitle { font: 500 19px 'DejaVu Sans', Arial, sans-serif; fill: #b8d4e6; }
+      .section { font: 700 20px 'DejaVu Sans', Arial, sans-serif; fill: #f2fbff; }
+      .label { font: 700 16px 'DejaVu Sans', Arial, sans-serif; fill: #eff9ff; }
+      .body { font: 500 14px 'DejaVu Sans', Arial, sans-serif; fill: #c6dbea; }
+      .small { font: 500 12px 'DejaVu Sans', Arial, sans-serif; fill: #9fc3d8; }
+      .box { fill: url(#panel); stroke: #2b5573; stroke-width: 2; rx: 22; filter: url(#shadow); }
+      .chip { fill: #0d1f31; stroke: #2f6789; stroke-width: 1.5; rx: 12; }
+      .accent-line { stroke: url(#accent); stroke-width: 4; stroke-linecap: round; }
+      .flow { stroke: #4fd9ff; stroke-width: 4; fill: none; marker-end: url(#arrow); opacity: 0.95; }
+      .frame { fill: none; stroke: #214560; stroke-width: 2; rx: 30; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1120" fill="url(#bg)"/>
+  <rect x="28" y="28" width="1744" height="1064" class="frame"/>
+
+  <text x="70" y="92" class="title">ATIRF Platform Architecture</text>
+  <text x="70" y="128" class="subtitle">ATT&amp;CK-grounded, CTI-aware, local-first cyber defense workflow for SOC, CTI, IR, and research teams</text>
+  <line x1="70" y1="154" x2="1730" y2="154" class="accent-line"/>
+
+  <rect x="70" y="210" width="320" height="740" class="box"/>
+  <text x="100" y="252" class="section">Data Sources and Inputs</text>
+  <rect x="96" y="282" width="268" height="86" class="chip"/>
+  <text x="116" y="314" class="label">Telemetry and Security Controls</text>
+  <text x="116" y="338" class="body">XDR, SIEM, EDR, DNS, proxy, firewall,</text>
+  <text x="116" y="358" class="body">email, identity, cloud, vuln scanners</text>
+
+  <rect x="96" y="392" width="268" height="86" class="chip"/>
+  <text x="116" y="424" class="label">Threat Intelligence</text>
+  <text x="116" y="448" class="body">MITRE ATT&amp;CK, MISP, OpenCTI, TAXII,</text>
+  <text x="116" y="468" class="body">CISA KEV, ransomware.live, RSS feeds</text>
+
+  <rect x="96" y="502" width="268" height="86" class="chip"/>
+  <text x="116" y="534" class="label">Local Imports</text>
+  <text x="116" y="558" class="body">JSON, STIX, replay datasets, case exports,</text>
+  <text x="116" y="578" class="body">offline research bundles</text>
+
+  <rect x="96" y="612" width="268" height="86" class="chip"/>
+  <text x="116" y="644" class="label">Analyst-Supplied Context</text>
+  <text x="116" y="668" class="body">asset criticality, watchlists, business</text>
+  <text x="116" y="688" class="body">impact, notes, tasks, evidence</text>
+
+  <rect x="96" y="722" width="268" height="86" class="chip"/>
+  <text x="116" y="754" class="label">Connection Models</text>
+  <text x="116" y="778" class="body">local-only, self-hosted SOC, future</text>
+  <text x="116" y="798" class="body">hosted control plane</text>
+
+  <rect x="450" y="210" width="430" height="740" class="box"/>
+  <text x="480" y="252" class="section">Ingestion, Normalization, and Storage</text>
+  <rect x="476" y="282" width="378" height="96" class="chip"/>
+  <text x="498" y="314" class="label">Connector Layer</text>
+  <text x="498" y="338" class="body">connector registry, sync jobs, health checks,</text>
+  <text x="498" y="358" class="body">user-managed news and CTI sources</text>
+
+  <rect x="476" y="402" width="378" height="96" class="chip"/>
+  <text x="498" y="434" class="label">Normalization and Enrichment</text>
+  <text x="498" y="458" class="body">canonical events, entity extraction, ATT&amp;CK</text>
+  <text x="498" y="478" class="body">mapping, asset/risk enrichment, intel joins</text>
+
+  <rect x="476" y="522" width="378" height="96" class="chip"/>
+  <text x="498" y="554" class="label">Persistence</text>
+  <text x="498" y="578" class="body">SQLite now; PostgreSQL, OpenSearch, Redis,</text>
+  <text x="498" y="598" class="body">queues, and object storage in production</text>
+
+  <rect x="476" y="642" width="378" height="96" class="chip"/>
+  <text x="498" y="674" class="label">Knowledge Stores</text>
+  <text x="498" y="698" class="body">ATT&amp;CK catalog, ransomware playbooks, KEV,</text>
+  <text x="498" y="718" class="body">source catalog, incident methodology</text>
+
+  <rect x="476" y="762" width="378" height="134" class="chip"/>
+  <text x="498" y="794" class="label">Core APIs and Services</text>
+  <text x="498" y="818" class="body">FastAPI routes, import APIs, workflow APIs,</text>
+  <text x="498" y="838" class="body">notes/tasks/evidence APIs, connector history,</text>
+  <text x="498" y="858" class="body">live ransomware, KEV, and cyber news APIs</text>
+
+  <rect x="940" y="210" width="420" height="740" class="box"/>
+  <text x="970" y="252" class="section">Detection, Reasoning, and Decisions</text>
+  <rect x="966" y="282" width="368" height="96" class="chip"/>
+  <text x="988" y="314" class="label">Detection and Scoring</text>
+  <text x="988" y="338" class="body">rule logic, severity scoring, explainable hits,</text>
+  <text x="988" y="358" class="body">risk-weighted alert generation</text>
+
+  <rect x="966" y="402" width="368" height="96" class="chip"/>
+  <text x="988" y="434" class="label">Correlation and Incident Graph</text>
+  <text x="988" y="458" class="body">entity linkage, timeline grouping, incident</text>
+  <text x="988" y="478" class="body">creation, evidence-backed context</text>
+
+  <rect x="966" y="522" width="368" height="96" class="chip"/>
+  <text x="988" y="554" class="label">Threat Hypothesis Engine</text>
+  <text x="988" y="578" class="body">attack-pattern ranking, ransomware matching,</text>
+  <text x="988" y="598" class="body">ATT&amp;CK chain scoring, competing hypotheses</text>
+
+  <rect x="966" y="642" width="368" height="96" class="chip"/>
+  <text x="988" y="674" class="label">NIST-Aligned Playbooks</text>
+  <text x="988" y="698" class="body">incident-type guidance, containment options,</text>
+  <text x="988" y="718" class="body">decision helper, workflow phase support</text>
+
+  <rect x="966" y="762" width="368" height="134" class="chip"/>
+  <text x="988" y="794" class="label">Local AI Copilot</text>
+  <text x="988" y="818" class="body">Ollama-backed incident analysis with grounded</text>
+  <text x="988" y="838" class="body">prompts built from alerts, incidents, ATT&amp;CK,</text>
+  <text x="988" y="858" class="body">CTI, and analyst workflow data</text>
+
+  <rect x="1420" y="210" width="310" height="740" class="box"/>
+  <text x="1450" y="252" class="section">Analyst Outputs and Workflows</text>
+  <rect x="1446" y="282" width="258" height="86" class="chip"/>
+  <text x="1466" y="314" class="label">Dashboard and Visuals</text>
+  <text x="1466" y="338" class="body">landing page, ATT&amp;CK views, feed panels,</text>
+  <text x="1466" y="358" class="body">public screenshots, metrics</text>
+
+  <rect x="1446" y="392" width="258" height="86" class="chip"/>
+  <text x="1466" y="424" class="label">Case Management</text>
+  <text x="1466" y="448" class="body">incidents, workflow state, owners, notes,</text>
+  <text x="1466" y="468" class="body">tasks, evidence, response tracking</text>
+
+  <rect x="1446" y="502" width="258" height="86" class="chip"/>
+  <text x="1466" y="534" class="label">Operational Intelligence</text>
+  <text x="1466" y="558" class="body">ransomware feed, KEV alerts, deduplicated</text>
+  <text x="1466" y="578" class="body">cyber news, source provenance</text>
+
+  <rect x="1446" y="612" width="258" height="86" class="chip"/>
+  <text x="1466" y="644" class="label">Defender Decisions</text>
+  <text x="1466" y="668" class="body">contain, monitor, escalate, collect more,</text>
+  <text x="1466" y="688" class="body">document, close, learn, tune</text>
+
+  <rect x="1446" y="722" width="258" height="86" class="chip"/>
+  <text x="1466" y="754" class="label">Community and Product Layer</text>
+  <text x="1466" y="778" class="body">open rules, datasets, connectors, premium</text>
+  <text x="1466" y="798" class="body">multi-tenant and managed capabilities</text>
+
+  <path d="M390 575 C420 575, 420 575, 450 575" class="flow"/>
+  <path d="M880 575 C910 575, 910 575, 940 575" class="flow"/>
+  <path d="M1360 575 C1390 575, 1390 575, 1420 575" class="flow"/>
+
+  <path d="M1510 810 C1510 930, 1160 975, 890 975 C640 975, 360 950, 360 835" class="flow"/>
+  <text x="950" y="1005" text-anchor="middle" class="subtitle">Analyst feedback, workflow updates, and curated evidence continuously improve detections, playbooks, connectors, and local AI reasoning.</text>
+
+  <rect x="70" y="982" width="1660" height="82" class="chip"/>
+  <text x="96" y="1015" class="label">Deployment Modes</text>
+  <text x="280" y="1015" class="body">Local lab and research</text>
+  <text x="495" y="1015" class="body">Self-hosted SOC and IR</text>
+  <text x="725" y="1015" class="body">CTI and threat research teams</text>
+  <text x="1010" y="1015" class="body">MSSP-ready future path</text>
+  <text x="1245" y="1015" class="body">Grounded local AI with Ollama</text>
+  <text x="96" y="1042" class="small">ATIRF is positioned as an open cyber defense operating layer that connects telemetry, CTI, ATT&amp;CK, ransomware intelligence, decision support, and analyst workflow.</text>
+</svg>

@@ -1,0 +1,98 @@
+[
+  {
+    "incident_type": "ransomware",
+    "nist_alignment": "Detection and Analysis; Containment, Eradication, and Recovery",
+    "priority_questions": [
+      "Is encryption active, staged, or only suspected?",
+      "Is there evidence of exfiltration or leak-site extortion risk?",
+      "Are backups, recovery systems, or critical infrastructure being targeted?"
+    ],
+    "decision_gates": [
+      "Privileged identity exposure",
+      "Lateral movement evidence",
+      "Backup tampering or recovery inhibition",
+      "Known ransomware-impact indicators"
+    ],
+    "immediate_actions": [
+      "Isolate affected systems and protect backup infrastructure.",
+      "Disable or step up controls for suspected compromised identities.",
+      "Block active C2, staging, and payload delivery destinations."
+    ]
+  },
+  {
+    "incident_type": "phishing-bec",
+    "nist_alignment": "Detection and Analysis; Containment, Eradication, and Recovery",
+    "priority_questions": [
+      "Were credentials harvested or sessions hijacked?",
+      "Were mailbox rules, forwarding rules, or OAuth grants created?",
+      "Did the compromise spread to other users or business workflows?"
+    ],
+    "decision_gates": [
+      "Credential theft confidence",
+      "Mailbox manipulation evidence",
+      "Privilege escalation through SaaS identities"
+    ],
+    "immediate_actions": [
+      "Revoke sessions and review mailbox rule changes.",
+      "Reset credentials and validate MFA state.",
+      "Identify recipients, impacted messages, and downstream access."
+    ]
+  },
+  {
+    "incident_type": "identity-compromise",
+    "nist_alignment": "Detection and Analysis; Containment, Eradication, and Recovery",
+    "priority_questions": [
+      "Is the identity privileged or laterally connected to critical systems?",
+      "Are there anomalous sign-ins, token abuse, or impossible travel indicators?",
+      "Was the identity used to create persistence or new credentials?"
+    ],
+    "decision_gates": [
+      "Privileged access level",
+      "Cross-system identity usage",
+      "Token or session persistence risk"
+    ],
+    "immediate_actions": [
+      "Revoke refresh tokens and active sessions.",
+      "Review admin role usage and privileged operations.",
+      "Reset credentials and revalidate MFA enrollment if needed."
+    ]
+  },
+  {
+    "incident_type": "endpoint-intrusion",
+    "nist_alignment": "Detection and Analysis; Containment, Eradication, and Recovery",
+    "priority_questions": [
+      "What executed and what spawned it?",
+      "Is there persistence, download activity, or command-and-control?",
+      "Is the behavior isolated or present on additional endpoints?"
+    ],
+    "decision_gates": [
+      "Execution confidence",
+      "Persistence evidence",
+      "Network follow-on activity"
+    ],
+    "immediate_actions": [
+      "Collect process lineage and network context.",
+      "Isolate the host if malicious execution is likely.",
+      "Hunt peer systems for matching indicators."
+    ]
+  },
+  {
+    "incident_type": "generic-compromise",
+    "nist_alignment": "Detection and Analysis",
+    "priority_questions": [
+      "What is known versus inferred?",
+      "What evidence is missing to classify the incident confidently?",
+      "What entity pivots expand the likely scope?"
+    ],
+    "decision_gates": [
+      "Evidence sufficiency",
+      "Business criticality",
+      "Potential blast radius"
+    ],
+    "immediate_actions": [
+      "Preserve evidence and expand host, user, and network pivots.",
+      "Collect telemetry needed to classify the incident type.",
+      "Escalate if confidence or risk increases."
+    ]
+  }
+]

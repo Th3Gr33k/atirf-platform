@@ -52,6 +52,11 @@ class IncidentOut(BaseModel):
     risk_score: float
     summary: Optional[str] = None
     status: str
+    nist_phase: str
+    owner: Optional[str] = None
+    disposition: Optional[str] = None
+    last_decision: Optional[str] = None
+    response_summary: Optional[str] = None
     hostname: Optional[str] = None
     user: Optional[str] = None
 
@@ -83,5 +88,97 @@ class ConnectorIn(BaseModel):
 
 class ConnectorOut(ConnectorIn):
     id: int
+    last_sync_status: Optional[str] = None
+    last_sync_message: Optional[str] = None
+    last_sync_at: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class IncidentDecisionIn(BaseModel):
+    incident_type: Optional[str] = None
+    confidence: str = "medium"
+    business_criticality: str = "medium"
+    privileged_identity_exposure: bool = False
+    lateral_movement_evidence: bool = False
+    exfiltration_evidence: bool = False
+    ransomware_impact_evidence: bool = False
+    external_exposure: bool = False
+
+
+class IncidentWorkflowIn(BaseModel):
+    status: Optional[str] = None
+    nist_phase: Optional[str] = None
+    owner: Optional[str] = None
+    disposition: Optional[str] = None
+    last_decision: Optional[str] = None
+    response_summary: Optional[str] = None
+
+
+class EventImportIn(BaseModel):
+    records: List[EventIn] = Field(default_factory=list)
+
+
+class IncidentNoteIn(BaseModel):
+    author: Optional[str] = None
+    body: str
+
+
+class IncidentNoteOut(IncidentNoteIn):
+    id: int
+    created_at: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class IncidentTaskIn(BaseModel):
+    title: str
+    owner: Optional[str] = None
+    status: str = "open"
+
+
+class IncidentTaskOut(IncidentTaskIn):
+    id: int
+    created_at: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class IncidentEvidenceIn(BaseModel):
+    evidence_type: str
+    source: Optional[str] = None
+    description: str
+
+
+class IncidentEvidenceOut(IncidentEvidenceIn):
+    id: int
+    created_at: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class ConnectorJobOut(BaseModel):
+    id: int
+    connector_id: int
+    job_type: str
+    status: str
+    message: Optional[str] = None
+    started_at: Optional[str] = None
+    finished_at: Optional[str] = None
+    created_at: Optional[str] = None
+
+    model_config = ConfigDict(from_attributes=True)
+
+
+class NewsSourceIn(BaseModel):
+    name: str
+    url: str
+    trust_level: str = "community"
+    enabled: bool = True
+
+
+class NewsSourceOut(NewsSourceIn):
+    id: int
+    created_at: Optional[str] = None
 
     model_config = ConfigDict(from_attributes=True)

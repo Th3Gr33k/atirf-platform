@@ -8,3 +8,4 @@ backend/atirf.db
 node_modules/
 dist/
 build/
+private/

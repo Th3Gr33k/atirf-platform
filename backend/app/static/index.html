@@ -9,6 +9,9 @@
 <body>
   <header>
     <div class="brand">
+      <div class="brand-mark">
+        <img src="/static/logo.png" alt="ATIRF logo" class="brand-logo" />
+      </div>
       <div class="eyebrow">ATIRF v0.1.0 Public Preview</div>
       <h1>Adaptive Threat Intelligence &amp; Response Framework</h1>
       <p>Open cyber defense platform for ATT&amp;CK mapping, CTI enrichment, ransomware tracking, and grounded local AI.</p>
@@ -24,6 +27,10 @@
   <main>
     <section class="hero">
       <div class="hero-copy">
+        <div class="hero-brandline">
+          <img src="/static/logo.png" alt="ATIRF logo" class="hero-logo" />
+          <span>Threat-informed detection, CTI, and response in one workflow</span>
+        </div>
         <div class="hero-chip">Built in the open for defenders, researchers, and the cyber community</div>
         <h2>From raw telemetry to evidence-backed incident reasoning</h2>
         <p class="hero-text">ATIRF combines detections, ATT&amp;CK techniques, CTI sources, ransomware feed enrichment, and a local Ollama copilot into one analyst-centric workflow.</p>
@@ -110,7 +117,10 @@
         <div id="sourceCatalog"></div>
       </div>
       <div class="panel">
-        <h2>User Connectors</h2>
+        <div class="panel-header">
+          <h2>User Connectors</h2>
+          <button id="syncConnectorsBtn">Sync Connectors</button>
+        </div>
         <form id="connectorForm" class="connector-form">
           <input id="connectorName" type="text" placeholder="Connector name" required />
           <input id="connectorType" type="text" placeholder="Source type: misp, taxii, opencti" required />
@@ -131,6 +141,149 @@
 
     <section class="grid two">
       <div class="panel">
+        <h2>Incident Response Playbook</h2>
+        <div id="playbookPanel" class="detail">Select an incident to view its inferred playbook.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Decision Helper</h2>
+          <button id="decisionBtn">Evaluate Decision</button>
+        </div>
+        <form id="decisionForm" class="connector-form">
+          <select id="decisionIncidentType">
+            <option value="">Incident type: auto-detect</option>
+            <option value="ransomware">Incident type: ransomware</option>
+            <option value="phishing-bec">Incident type: phishing-bec</option>
+            <option value="identity-compromise">Incident type: identity-compromise</option>
+            <option value="endpoint-intrusion">Incident type: endpoint-intrusion</option>
+            <option value="generic-compromise">Incident type: generic-compromise</option>
+          </select>
+          <select id="decisionConfidence">
+            <option value="low">Confidence: low</option>
+            <option value="medium" selected>Confidence: medium</option>
+            <option value="high">Confidence: high</option>
+          </select>
+          <select id="decisionBusinessCriticality">
+            <option value="low">Business criticality: low</option>
+            <option value="medium" selected>Business criticality: medium</option>
+            <option value="high">Business criticality: high</option>
+            <option value="critical">Business criticality: critical</option>
+          </select>
+          <label><input id="decisionPrivileged" type="checkbox" /> Privileged identity exposure</label>
+          <label><input id="decisionLateral" type="checkbox" /> Lateral movement evidence</label>
+          <label><input id="decisionExfil" type="checkbox" /> Exfiltration evidence</label>
+          <label><input id="decisionRansomware" type="checkbox" /> Ransomware impact evidence</label>
+          <label><input id="decisionExternal" type="checkbox" /> External exposure</label>
+        </form>
+        <div id="decisionOutput" class="detail">Select an incident and evaluate decision support.</div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Case Workflow</h2>
+          <button id="saveWorkflowBtn">Save Workflow</button>
+        </div>
+        <form id="workflowForm" class="connector-form">
+          <select id="workflowStatus">
+            <option value="open">Status: open</option>
+            <option value="investigating">Status: investigating</option>
+            <option value="contained">Status: contained</option>
+            <option value="eradication">Status: eradication</option>
+            <option value="recovered">Status: recovered</option>
+            <option value="closed">Status: closed</option>
+          </select>
+          <select id="workflowPhase">
+            <option value="Preparation">NIST phase: Preparation</option>
+            <option value="Detection and Analysis" selected>NIST phase: Detection and Analysis</option>
+            <option value="Containment, Eradication, and Recovery">NIST phase: Containment, Eradication, and Recovery</option>
+            <option value="Post-Incident Activity">NIST phase: Post-Incident Activity</option>
+          </select>
+          <input id="workflowOwner" type="text" placeholder="Owner / analyst" />
+          <input id="workflowDisposition" type="text" placeholder="Disposition: confirmed, false-positive, benign" />
+          <input id="workflowDecision" type="text" placeholder="Last decision" />
+          <textarea id="workflowSummary" placeholder="Response summary and key actions taken"></textarea>
+        </form>
+        <div id="workflowOutput" class="detail">Select an incident and save workflow changes.</div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Local Import</h2>
+          <button id="importFileBtn">Import JSON File</button>
+        </div>
+        <form id="importForm" class="connector-form">
+          <input id="importFile" type="file" accept=".json,application/json" />
+        </form>
+        <div id="importOutput" class="detail">Import local event JSON to analyze telemetry without a connector.</div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <h2>Analyst Notes</h2>
+        <form id="noteForm" class="connector-form">
+          <input id="noteAuthor" type="text" placeholder="Author" />
+          <textarea id="noteBody" placeholder="Add investigation notes, observations, and findings"></textarea>
+          <button type="submit">Add Note</button>
+        </form>
+        <div id="notesPanel" class="detail">Select an incident to review or add notes.</div>
+      </div>
+      <div class="panel">
+        <h2>Tasks and Evidence</h2>
+        <form id="taskForm" class="connector-form">
+          <input id="taskTitle" type="text" placeholder="Task title" />
+          <input id="taskOwner" type="text" placeholder="Task owner" />
+          <select id="taskStatus">
+            <option value="open">Task status: open</option>
+            <option value="in-progress">Task status: in-progress</option>
+            <option value="done">Task status: done</option>
+          </select>
+          <button type="submit">Add Task</button>
+        </form>
+        <form id="evidenceForm" class="connector-form">
+          <input id="evidenceType" type="text" placeholder="Evidence type: log, hash, domain, mailbox rule" />
+          <input id="evidenceSource" type="text" placeholder="Evidence source" />
+          <textarea id="evidenceDescription" placeholder="Evidence description and why it matters"></textarea>
+          <button type="submit">Add Evidence</button>
+        </form>
+        <div id="tasksPanel" class="detail">Select an incident to review tasks and evidence.</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Connector Job History</h2>
+      <div id="connectorJobsPanel" class="detail">Run connector sync to create execution history.</div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>News Feed Sources</h2>
+          <button id="seedNewsBtn">Seed Default News Sources</button>
+        </div>
+        <form id="newsSourceForm" class="connector-form">
+          <input id="newsSourceName" type="text" placeholder="Feed source name" />
+          <input id="newsSourceUrl" type="url" placeholder="Feed URL" />
+          <select id="newsSourceTrust">
+            <option value="community">Trust: community</option>
+            <option value="research">Trust: research</option>
+            <option value="authoritative">Trust: authoritative</option>
+          </select>
+          <button type="submit">Add News Source</button>
+        </form>
+        <div id="newsSourcesPanel" class="detail">Seed or add news feeds to customize cyber-news monitoring.</div>
+      </div>
+      <div class="panel">
+        <h2>News Feed Guidance</h2>
+        <div class="detail">
+          Use multiple trusted public cybersecurity news feeds for situational awareness. Treat news as enrichment, not as direct incident truth. Prefer cross-source confirmation for operational decisions.
+        </div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
         <h2>Live Ransomware Feed</h2>
         <div id="ransomwareLiveStatus" class="detail">Live ransomware feed not loaded yet.</div>
         <div id="ransomwareLiveGroups"></div>
@@ -138,6 +291,33 @@
       <div class="panel">
         <h2>Recent Claimed Victims</h2>
         <div id="ransomwareLiveVictims"></div>
+      </div>
+    </section>
+
+    <section class="grid two">
+      <div class="panel">
+        <div class="panel-header">
+          <h2>CISA KEV Feed</h2>
+          <button id="refreshKevBtn">Refresh KEV</button>
+        </div>
+        <div id="kevStatus" class="detail">KEV feed not loaded yet.</div>
+        <div id="kevEntries"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-header">
+          <h2>Cybersecurity News</h2>
+          <div class="actions">
+            <select id="newsTrustFilter">
+              <option value="all">Trust filter: all</option>
+              <option value="authoritative">Trust filter: authoritative</option>
+              <option value="research">Trust filter: research</option>
+              <option value="community">Trust filter: community</option>
+            </select>
+            <button id="refreshNewsBtn">Refresh News</button>
+          </div>
+        </div>
+        <div id="newsStatus" class="detail">Cybersecurity news not loaded yet.</div>
+        <div id="newsItems"></div>
       </div>
     </section>
 
@@ -150,8 +330,11 @@
     </section>
 
     <footer class="site-footer">
-      <div>ATIRF Public Preview</div>
-      <div>Open cyber defense platform for community-driven detection, CTI, and incident reasoning.</div>
+      <div>
+        <strong>ATIRF Public Preview</strong><br />
+        Mr. Gr33k H4sh3r / Th3Gr33k - AKA Deiker
+      </div>
+      <div>Open cyber defense platform for community-driven detection, CTI, and incident reasoning.<br />A Cybersecurity lead that love cyber and AI :)</div>
     </footer>
   </main>
 

@@ -9,6 +9,11 @@
 > Built for defenders, researchers, and the global security community.
 > Designed to be transparent, practical, and community-driven.
 
+Created and maintained by **Mr. Gr33k H4sh3r / Th3Gr33k - AKA Deiker**.  
+A Cybersecurity lead that love cyber and AI :)
+
+![ATIRF Architecture Overview](docs/architecture-social.png)
+
 ---
 
 ## 🚧 Project Status - Work in Progress / Experimental
@@ -54,6 +59,16 @@ The purpose is to help cyber defenders:
 - operationalize CTI in day-to-day defense
 - share detections and improvements openly
 - build a stronger community-owned security platform together
+
+ATIRF is not positioned as the only project in cyber defense doing CTI, ATT&CK, or incident response.
+Its differentiation is in bringing those capabilities together into a single open workflow that is:
+
+- ATT&CK-grounded
+- CTI-aware
+- ransomware-aware
+- NIST-aligned
+- local-AI-capable through Ollama
+- designed for community contribution
 
 ---
 
@@ -117,6 +132,27 @@ Cyber defenders should be able to use ATIRF to:
 - generate grounded analyst summaries and recommended investigation steps
 - test detections locally with public datasets before deploying at scale
 - contribute improved detections, mappings, connectors, datasets, and investigation workflows
+
+## Real Usage Modes
+
+ATIRF is designed to support multiple practical modes:
+
+- `Local lab mode`: import JSON datasets or replay telemetry locally and analyze everything on one machine
+- `Self-hosted SOC mode`: connect internal tools such as XDR, SIEM, identity, CTI, DNS, email, and firewall sources
+- `CTI operations mode`: enrich incidents with ATT&CK, KEV, ransomware tracking, and external intelligence
+
+For teams starting small, the easiest path is:
+
+1. run the platform locally
+2. import JSON telemetry exports
+3. seed ATT&CK and CTI
+4. review incidents, playbooks, decision support, and local AI output
+
+Then grow into:
+
+- connector-driven ingestion
+- self-hosted internal deployment
+- future multi-user and hosted operational models
 
 ## Community Contribution Model
 
@@ -211,6 +247,20 @@ ATIRF should evolve as:
 - a connector-driven CTI and attack-pattern analysis platform with grounded AI assistance
 - a local-first AI workflow powered by open models through Ollama where possible
 
+## What Makes ATIRF Distinct
+
+ATIRF should be presented as a distinct combination of:
+
+- ATT&CK-driven detection and incident mapping
+- integrated CTI source inventory and enrichment
+- ransomware playbook reasoning plus optional live ransomware tracking
+- CISA KEV awareness and cyber-news situational context
+- incident-type playbooks and interactive decision support
+- grounded local AI for incident analysis using open models through Ollama
+
+That is the strength of the platform.
+The claim should be that ATIRF brings these layers together into one open defender workflow, not that no adjacent platform exists.
+
 See:
 
 - `docs/product-blueprint.md`
@@ -221,8 +271,17 @@ See:
 - ATT&CK technique catalog seeded from `data/attack/mitre_attack_seed.json`
 - CTI source catalog seeded from `data/intel/source_catalog.json`
 - ransomware family playbook patterns in `data/intel/ransomware_patterns.json`
+- live CISA KEV ingestion and exposure context
+- live cybersecurity news aggregation for defender awareness
 - user-defined connectors for MISP, TAXII, OpenCTI, ransomware tracking, and optional OSINT sources
 - ranked attack-pattern hypotheses based on observed ATT&CK technique overlap
+- incident-type response playbooks and interactive decision-support helper
+- persistent case workflow fields for owner, phase, disposition, and response summary
+- local connector sync status
+- connector job history for local worker-style execution visibility
+- local JSON event import for simplified adoption
+- saved analyst notes, tasks, and evidence records on incidents
+- user-managed cyber news feed sources with trust labels and aggregation
 - future grounded local-AI copilot path via Ollama-hosted open models
 - optional live ransomware tracking through the `ransomware.live` API
 
@@ -285,6 +344,15 @@ Important:
 - treat public victim-claim feeds as enrichment, not ground truth
 - review `ransomware.live` terms and usage boundaries before commercial use
 - keep the platform evidence-first even when public leak-site tracking is enabled
+
+## CISA KEV and Cyber News
+
+ATIRF now also supports:
+
+- live CISA KEV ingestion for exploited-vulnerability awareness
+- cybersecurity news aggregation for defender situational awareness across multiple public feeds
+
+These panels are designed as enrichment layers for analysts and researchers, not as automatic detection truth.
 
 ---
 

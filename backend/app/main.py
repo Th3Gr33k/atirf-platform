@@ -8,7 +8,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.config import settings
 from app.api.routes import router
-from app.database import Base, engine
+from app.database import Base, engine, ensure_runtime_schema
 
 logging.basicConfig(
     level=logging.INFO,
@@ -16,6 +16,7 @@ logging.basicConfig(
 )
 
 Base.metadata.create_all(bind=engine)
+ensure_runtime_schema()
 
 app = FastAPI(title=settings.app_name, version=settings.app_version)
 app.include_router(router)

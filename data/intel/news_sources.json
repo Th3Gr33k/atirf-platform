@@ -1,0 +1,26 @@
+[
+  {
+    "name": "BleepingComputer News",
+    "url": "https://www.bleepingcomputer.com/feed/"
+  },
+  {
+    "name": "The Hacker News",
+    "url": "https://feeds.feedburner.com/TheHackersNews"
+  },
+  {
+    "name": "SecurityWeek",
+    "url": "https://feeds.feedburner.com/securityweek"
+  },
+  {
+    "name": "Dark Reading",
+    "url": "https://www.darkreading.com/rss.xml"
+  },
+  {
+    "name": "Help Net Security",
+    "url": "https://www.helpnetsecurity.com/feed/"
+  },
+  {
+    "name": "Schneier on Security",
+    "url": "https://www.schneier.com/feed/atom/"
+  }
+]
